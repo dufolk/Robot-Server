@@ -11,7 +11,6 @@ def format_location():
 
 # 用于封装报文    
 def myencoder(data:str):
-    data = 'Hello I am'
     # 生成一个data的校验位
     check = sum([ord(i) for i in data]) % 256
     # 将校验位转换为16进制
