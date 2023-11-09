@@ -34,6 +34,8 @@ class ServerService(socketserver.BaseRequestHandler):
                     client.sendall(data.encode('utf-8'))
             except Exception as e:  # Add an except clause to handle exceptions
                 print(e)
+    
+
                 
 if __name__ == '__main__':
     host = 'localhost'
