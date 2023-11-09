@@ -1,19 +1,15 @@
 class Location:
-    def  __init__(self, id, location):
-        self.__id = id
-        self.__location = location
-        
-    @property
-    def id(self):
-        return self.__id
-
-    @id.setter
-    def id(self,value):
-        self.__id=value
+    def  __init__(self):
+        self.__location = [0] * 3
 
     @property
     def location(self):
         return self.__location
+    
+    @location.setter
+    def location(self, location):
+        self.__location = location
 
     def __str__(self):
-        return self.__id
+        return f"Location: {self.__location}"
+
