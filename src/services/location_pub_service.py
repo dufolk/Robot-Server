@@ -1,9 +1,10 @@
-from src.models import Location
-
+from ..utils import *
+import threading
+# Author ： ZP
+# 用于发布坐标的服务
 class LocationPubService:
     def __init__(self):
-        self._location = Location()
+        pass
 
     def publish(self, location):
-        self._location_pub.publish(location)
-
+        pass
