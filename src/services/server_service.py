@@ -10,7 +10,6 @@ class ServerService(socketserver.BaseRequestHandler):
         print('Got connection from', self.client_address)
         clienteneity = 1
         GlobalStatus.Clients.append(self.request)
-        print(GlobalStatus.Clients)
 
 class RobotServer:
     def commandpublish(self, command):
