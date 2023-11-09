@@ -1,4 +1,5 @@
 from src.services import ServerService
+from src.services import LocationPubService
 import socketserver
 
 if __name__ == '__main__':
