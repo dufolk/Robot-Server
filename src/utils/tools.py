@@ -1,4 +1,4 @@
-#from . import GlobalStatus
+from . import GlobalStatus
 import json
 from collections import defaultdict
 
@@ -16,7 +16,7 @@ def myencoder(data:str):
     # 将校验位转换为16进制
     check = str(hex(check))[-2:]
     data = data + check
-    length = str(len(data)).zfill(5)
+    length = str(len(data)).zfill(4)
     data = length + data
     return data.encode('utf-8')
 
