@@ -1,4 +1,4 @@
-from .locations import Location
+from . import Location
 # Author ： ZP
 # 服务器记录的客户端实体
 class ClientEntity:
