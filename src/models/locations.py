@@ -15,6 +15,3 @@ class Location:
         self.__x = location[0]
         self.__y = location[1]
         self.__yaw = location[2]
-
-    def __str__(self):
-        return f"Location: {self.location}"

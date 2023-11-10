@@ -6,7 +6,9 @@ from collections import defaultdict
 # Author ： ZP
 # 用于整合坐标
 def format_location():
-    location_dict = {client.id:client.location.location for client in GlobalStatus.Clients}
+    if len(GlobalStatus.Clients) == 0:
+        return None
+    location_dict = {id:client.location for id, client in GlobalStatus.Clients.items()}
     message = json.dumps(location_dict)
     return message
 
@@ -34,6 +36,9 @@ def mydecoder(data:bytes):
 # 用于判断报文类型
 def msg_type(msg:dict):
     if "from" in msg and "msg" in msg:
-        return Config.MSG_TYPE['MESSAGE']
+        if "to" in msg:
+            return Config.MSG_TYPE['SERVER_COMMAND']
+        else:
+            return Config.MSG_TYPE['MESSAGE']
     else:
         return Config.MSG_TYPE['LOCATION']
