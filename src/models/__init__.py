@@ -1,2 +1,2 @@
 from .locations import Location
-from .client import ClientEntity
+from .client_entity import ClientEntity

@@ -12,6 +12,8 @@ class LocationPubService:
     def publish(self):
         while True:
             location_message = format_location()
+            if location_message == None:
+                continue
             msg = myencoder(location_message)
             GlobalStatus.SendLock.acquire()
             try:
