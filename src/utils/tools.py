@@ -42,3 +42,14 @@ def msg_type(msg:dict):
             return Config.MSG_TYPE['MESSAGE']
     else:
         return Config.MSG_TYPE['LOCATION']
+    
+# 用于客户端之间交换消息
+def client_send_msg(**command):
+    data = {
+        "from": command['from'],
+        "msg": command['msg']
+    }
+    GlobalStatus.SendLock.acquire()
+    if command['to'] in GlobalStatus.Clients.keys():
+        GlobalStatus.Clients[command['to']].entity.sendall(myencoder(json.dumps(data)))
+    GlobalStatus.SendLock.release()
