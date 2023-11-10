@@ -3,9 +3,10 @@ import sys
 import time
 sys.path.append('.')
 from src.utils import *
+from configs import *
 import json
 if __name__ == '__main__':
-    client = RobotEntity('192.168.1.8', 9999)
+    client = RobotEntity(Config.SERVER_IP, Config.SERVER_PORT, 1)
     while True:
         msg = client.location.location
         # msg = json.dumps(msg)
