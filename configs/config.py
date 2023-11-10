@@ -6,6 +6,7 @@ class Config:
     MSG_TYPE = {
         "LOCATION": 0,
         "MESSAGE": 1,
+        "SERVER_COMMAND": 2,
     }
 
     # 服务器IP和端口

@@ -8,8 +8,9 @@ import json
 if __name__ == '__main__':
     client = RobotEntity(Config.SERVER_IP, Config.SERVER_PORT, 1)
     while True:
-        msg = client.location.location
-        client.send2message(2, 'Hello')
-        time.sleep()
+        msg = client.location
+        # msg = json.dumps(msg)
+        # client.send_message(msg)
+        time.sleep(0.05)
 
     # print("Finished!")
