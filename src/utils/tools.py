@@ -1,4 +1,5 @@
 from . import GlobalStatus
+from configs import Config
 import json
 from collections import defaultdict
 
@@ -33,6 +34,6 @@ def mydecoder(data:bytes):
 # 用于判断报文类型
 def msg_type(msg):
     if "from" in msg and "msg" in msg:
-        return 1
+        return Config.MSG_TYPE['MESSAGE']
     else:
-        return 0
+        return Config.MSG_TYPE['LOCATION']

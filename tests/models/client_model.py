@@ -13,7 +13,6 @@ class ClientModel:
     def connect(self):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.connect((self.server_host, self.server_port))
-        self.send_message('2')
         print("Connect Successfully!")
 
     def send_message(self, msg):
