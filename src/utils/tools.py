@@ -32,7 +32,7 @@ def mydecoder(data:bytes):
         return None
 
 # 用于判断报文类型
-def msg_type(msg):
+def msg_type(msg:dict):
     if "from" in msg and "msg" in msg:
         return Config.MSG_TYPE['MESSAGE']
     else:

@@ -15,7 +15,7 @@ class ClientModel:
         self.sock.connect((self.server_host, self.server_port))
         print("Connect Successfully!")
 
-    def send_message(self, msg):
+    def send_message(self, msg:str):
         msg = myencoder(msg)
         self.sock.send(msg)
         print("Send Message Successfully!")
