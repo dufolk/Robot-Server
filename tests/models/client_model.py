@@ -13,12 +13,10 @@ class ClientModel:
     def connect(self):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.connect((self.server_host, self.server_port))
-        print("Connect Successfully!")
 
     def send_message(self, msg:str):
         msg = myencoder(msg)
         self.sock.send(msg)
-        print("Send Message Successfully!")
 
     def receive_message(self):
         data = self.sock.recv(1024)
