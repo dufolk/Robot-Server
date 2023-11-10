@@ -1,4 +1,5 @@
-# 
+# Author : YU
+# 用于客户端机器人功能类定义
 import threading
 import time
 import sys
@@ -23,6 +24,7 @@ class RobotEntity(ClientModel, Location):
         self.sending_thread.setDaemon(True)
         self.sending_thread.start()
 
+# 接收服务器发出的全局坐标
     def recv_msg(self):
         while True:
             try:
@@ -35,12 +37,12 @@ class RobotEntity(ClientModel, Location):
             except Exception as e:
                 print('recv_msg:'+e)
                 continue
-    
+
+# 向服务器发送自身坐标   
     def send_msg(self):
         i=0
         while True:
             try:
-                # loc_msg = {"id": self.id, "location": self.location}
                 loc_msg = {"id": self.id, "location": [i,i,i]}
                 loc_msg = myencoder(json.dumps(loc_msg))
                 self.lock.acquire()
@@ -53,7 +55,6 @@ class RobotEntity(ClientModel, Location):
                 print(e)
                 continue
             i+=1
-        # pass
 
     def robot_connect(self):
         self.connect()
@@ -85,14 +86,9 @@ class RobotEntity(ClientModel, Location):
         finally:
             self.lock.release()
 
-        
-
-
-
+    
 # {"id":[x,y,z], ...}
 # {"from":"id", "msg":"value"}
 # {"from":"id", "to":"id", "msg":"value"}
             
             
-
-    
