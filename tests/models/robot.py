@@ -18,45 +18,46 @@ class RobotEntity(ClientModel):
         self.receive_thread = threading.Thread(target=self.recv_msg)
         self.receive_thread.setDaemon(True)
         self.receive_thread.start()
+        self.sending_thread = threading.Thread(target=self.send_msg)
+        self.sending_thread.setDaemon(True)
+        self.sending_thread.start()
 
     def recv_msg(self):
-        self.type = 1
         while True:
             try:
-                self.type = 1
                 msg_len = self.sock.recv(4).decode('utf-8')
                 msg_len = int(msg_len)
-                self.msg = mydecoder(self.sock.recv(msg_len))
-                if self.msg == None:
+                msg = mydecoder(self.sock.recv(msg_len))
+                if msg == None:
                     continue
-                self.task()  
+                print(msg)
+                self.task(json.loads(msg))  
             except Exception as e:
                 print(e)
                 continue
 
     def robot_connect(self):
         self.connect()
-        self.send_message(2, "Hello robot!")
+        self.send_message(str(self.id))
 
-    def task(self):
-        type = msg_type(self.msg)
+# 根据报文类型进行不同的处理
+    def task(self, msg:dict):
+        type = msg_type(msg)
         if type == Config.MSG_TYPE['LOCATION']:
-            self.global_location = json.loads(self.msg)
-            print(self.location.location)
+            self.global_location = msg
         # TODO: 用于根据报文类型进行不同的处理
         else:
             pass
 
-# 向服务器发送消息
-    def send_message(self, to:int, msg):
+# 向其他机器人发送消息
+    def send2message(self, to:int, msg:str):
         msg2robo = {
-            "from": self.id,
+            "from": str(self.id),
             "to": str(to),
             "msg": msg
         }
-        msg2robo = json.dumps(msg2robo)
-        msg2robo = myencoder(msg2robo)
-        self.sock.send(msg2robo)
+
+        self.sock.send(myencoder(json.dumps(msg2robo)))
         print("Send Message Successfully!")
 
         
