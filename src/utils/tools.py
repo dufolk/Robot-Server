@@ -30,3 +30,9 @@ def mydecoder(data:bytes):
     else:
         return None
 
+# 用于判断报文类型
+def msg_type(msg):
+    if "from" in msg and "msg" in msg:
+        return 1
+    else:
+        return 0
