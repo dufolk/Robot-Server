@@ -1,8 +1,9 @@
 import socketserver
 import json
-from ..utils import GlobalStatus
+from ..utils import *
 from . import CommandPublishService
 from ..models import ClientEntity
+from configs import Config
 import time 
 import select
 
@@ -14,18 +15,18 @@ class ServerService(socketserver.BaseRequestHandler):
         id = self.myrecv()
         currclient = ClientEntity(id, self.request)
         GlobalStatus.Clients.append(currclient)
-        timeout = 100
         while True:
-            rlist, _, _ = select.select([self.request], [], [], timeout)
+            rlist, _, _ = select.select([self.request], [], [], Config.WAIT_TIMEOUT)
             if not rlist:
-                break
+                self.command_publish('{"from":"server", "msg":"timeout"}')
+                #break
             else:
                 data = self.myrecv()
         
         print('Lost connection from', self.client_address)
         GlobalStatus.Clients.remove(currclient)
 
-    def command_publish(self, command):
+    def command_publish(self, command:str):
         CommandPublishService.publish(command)
 
     def myrecv(self):
@@ -35,7 +36,7 @@ class ServerService(socketserver.BaseRequestHandler):
             self.request.recv(1024)
             return None
         data = self.request.recv(length)
-        data = self.mydecoder(data)
+        data = mydecoder(data)
         return data
 
         

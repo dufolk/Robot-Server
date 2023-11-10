@@ -12,7 +12,12 @@ class LocationPubService:
     def publish(self):
         while True:
             location_message = format_location()
-            for client in GlobalStatus.Clients:
-                client.entity.sendall(location_message.encode('utf-8'))
+            msg = myencoder(location_message)
+            GlobalStatus.SendLock.acquire()
+            try:
+                for client in GlobalStatus.Clients:
+                    client.entity.sendall(msg)
+            finally:
+                GlobalStatus.SendLock.release()
             time.sleep(0.05)
 
