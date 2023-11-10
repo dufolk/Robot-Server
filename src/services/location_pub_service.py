@@ -15,7 +15,7 @@ class LocationPubService:
             msg = myencoder(location_message)
             GlobalStatus.SendLock.acquire()
             try:
-                for client in GlobalStatus.Clients:
+                for client in GlobalStatus.Clients.values():
                     client.entity.sendall(msg)
             finally:
                 GlobalStatus.SendLock.release()
