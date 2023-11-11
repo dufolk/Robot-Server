@@ -5,8 +5,8 @@ from configs import Config
 import socketserver
 
 if __name__ == '__main__':
-    host = '192.168.0.120'
-    port = 19999
+    host = Config.SERVER_IP
+    port = Config.SERVER_PORT
     server = socketserver.ThreadingTCPServer((host, port), ServerService)
     location_pub = LocationPubService()
     print('server started')
