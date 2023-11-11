@@ -1,5 +1,6 @@
-from src.services import ServerService, LocationPubService, WebService
+from src.services import ServerService, LocationPubService
 from src.services import CommandPublishService
+from src.views import WebService
 from configs import Config
 import socketserver
 from flask import Flask, render_template

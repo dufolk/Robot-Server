@@ -1,6 +1,7 @@
 import threading
 from flask import Flask, render_template
-from views import views_blue
+from flask_socketio import SocketIO
+from . import views_blue
 
 class WebService:
     def __init__(self):
@@ -9,7 +10,9 @@ class WebService:
         self.web_service.start()
 
     def web_service(self):
-        app = Flask(__name__.split('.')[0])
-        print(__name__)
+        app = Flask(__name__)
+        socketio = SocketIO(app)
+        
         app.register_blueprint(views_blue)
-        app.run(host="0.0.0.0", port=8000)
+        # app.run(host="0.0.0.0", port=8000)
+        socketio.run(app, host="0.0.0.0", port=8000)

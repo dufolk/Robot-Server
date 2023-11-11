@@ -10,5 +10,5 @@ class Config:
     }
 
     # 服务器IP和端口
-    SERVER_IP = "192.168.1.8"
+    SERVER_IP = "192.168.0.5"
     SERVER_PORT = 19999
