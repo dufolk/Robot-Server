@@ -1,6 +1,10 @@
 
 $(function () {
-
+    var socketio = io.connect('http://127.0.0.1:8000');
+    socketio.on('connect', function () {
+        console.log('连接成功');
+        socketio.emit('message', {data: 'I\'m connected!'});
+    });
     echarts_1();
     echarts_2();
     map();
@@ -325,6 +329,13 @@ $(function () {
 
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
+        socketio.on('message', function (msg) {
+            console.log(msg);
+            console.log(msg[0]);
+            option.series[0].data[0] = [msg[0], msg[1]];
+            option.series[0].data[1] = [msg[2], msg[3]];
+            myChart.setOption(option); 
+        });
         window.addEventListener("resize",function(){
             myChart.resize();
         });
