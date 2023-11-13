@@ -24,8 +24,11 @@ def index():
 @socketio.on('connect')
 def connect(message):
     print('connect')
-
-    loc = [random.randint(0, 100), random.randint(0, 100), random.randint(0, 100), random.randint(0, 100)]
-    data = loc
-    socketio.emit('message', data)
-    time.sleep(0.5)
+    socketio.start_background_task(send_location)
+    
+def send_location():
+    while True:
+        loc = {k:[v.location[0],v.location[1]] for k,v in GlobalStatus.Clients.items()}
+        data = loc
+        socketio.emit('message', data)
+        time.sleep(0.1)

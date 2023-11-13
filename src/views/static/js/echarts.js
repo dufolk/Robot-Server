@@ -5,6 +5,12 @@ $(function () {
         console.log('连接成功');
         socketio.emit('message', {data: 'I\'m connected!'});
     });
+    var color_id = {
+        0: "RED1",
+        1: "RED2",
+        2: "BLUE1",
+        3: "BLUE2",
+    }
     echarts_1();
     echarts_2();
     map();
@@ -309,19 +315,19 @@ $(function () {
                 type: 'effectScatter',
                 symbolSize: 20,
                 data: [
-                  [100, 100.2],
-                  [700.4, 300]
+                  [-15, -15],
+                  [-15, -15]
                 ],
-                color: ['#0000ff']
+                color: ['#ff0000']
               },
               {
                 type: 'effectScatter',
                 symbolSize: 20,
                 data: [
-                  [100, 400.2],
-                  [550.4, 130]
+                  [-15, -15],
+                  [-15, -15]
                 ],
-                color: ['#ff0000']
+                color: ['#0000ff']
               }
             ]
           };
@@ -330,10 +336,13 @@ $(function () {
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
         socketio.on('message', function (msg) {
-            console.log(msg);
-            console.log(msg[0]);
-            option.series[0].data[0] = [msg[0], msg[1]];
-            option.series[0].data[1] = [msg[2], msg[3]];
+            // console.log(msg);
+            // 遍历字典msg，将数据放入option中
+            for (var id in msg){
+                console.log(id, Math.floor(id/2), id%2)
+                var data = msg[id];
+                option.series[Math.floor(id/2)].data[id%2] = data;
+            }
             myChart.setOption(option); 
         });
         window.addEventListener("resize",function(){
@@ -343,7 +352,6 @@ $(function () {
     function echarts_3() {
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('echarts_3'));
-
         option = {
 
             tooltip : {

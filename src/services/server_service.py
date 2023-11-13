@@ -10,7 +10,7 @@ from configs import Config
 class ServerService(socketserver.BaseRequestHandler):                              
     def handle(self):
         print('Got connection from', self.client_address)
-        self.id = self.myrecv()
+        self.id = int(self.myrecv())
         currclient = ClientEntity(self.id, self.request)
         self.disconnect = False
         GlobalStatus.Clients[self.id] = currclient
