@@ -10,7 +10,7 @@ class Config:
     }
 
     # 服务器IP和端口
-    SERVER_IP = "192.168.0.5"
+    SERVER_IP = "192.168.1.10"
     SERVER_PORT = 19999
 
     color_id = {"RED1":0, "RED2":1, "BLUE1":2, "BLUE2":3}

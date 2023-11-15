@@ -34,6 +34,9 @@ class ServerService(socketserver.BaseRequestHandler):
                 self.disconnect = True
                 return None
             length = int(bufferdata.decode('utf-8'))
+        except WindowsError:
+            self.disconnect = True
+            return None
         except Exception as e:
             print('myrecv error:', e)
             return None

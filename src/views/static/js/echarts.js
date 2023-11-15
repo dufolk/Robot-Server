@@ -1,6 +1,6 @@
 
 $(function () {
-    var socketio = io.connect('http://127.0.0.1:8000');
+    var socketio = io.connect('http://10.7.25.26:8000');
     socketio.on('connect', function () {
         console.log('连接成功');
         socketio.emit('message', {data: 'I\'m connected!'});

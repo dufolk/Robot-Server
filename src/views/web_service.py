@@ -17,3 +17,4 @@ class WebService:
         socketio.init_app(app, cors_allowed_origins="*")
         # app.run(host="0.0.0.0", port=8000)
         socketio.run(app, host="0.0.0.0", port=8000)
+        # socketio.run(app, host="192.168.1.10", port=8000)

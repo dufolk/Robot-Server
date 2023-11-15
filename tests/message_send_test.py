@@ -8,7 +8,7 @@ from configs import *
 import json
 if __name__ == '__main__':
     try:
-        client = RobotEntity(Config.SERVER_IP, Config.SERVER_PORT, id="RED2")
+        client = RobotEntity(Config.SERVER_IP, Config.SERVER_PORT, id="BLUE2")
         while True:
             msg = client.location
             # client.send2message(2, 'Hello')
