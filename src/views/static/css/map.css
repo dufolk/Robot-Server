@@ -5,7 +5,7 @@ html,body{
 .data{
     width: 100%;
     height: 100%;
-    background: url('../img/map_bg.png') center;
+    background: url('../img/map.jpg') center;
     min-width: 1366px;
 }
 .data>.data-title{
@@ -18,15 +18,16 @@ html,body{
     width: 440px;
     height: 40px;
     box-sizing: border-box;
-    border-right: 5px solid #0089ff;
-    border-left: 5px solid #0089ff;
+    border-right: 5px solid #00aeff;
+    border-left: 5px solid #00aeff;
     background: url("../img/title.png") no-repeat;
+    background-color: rgba(0, 0, 0, 0);
 }
 .data>.data-title>.title-left,
 .data>.data-title>.title-right{
     width:calc(50% - 220px);
     height: 3px;
-    background: #0089ff;
+    background: #00aeff;
     margin-top: 18px;
 }
 
@@ -174,7 +175,7 @@ html,body{
     height: 65px;
     text-align: center;
     line-height: 65px;
-    background-color: #0089ff;
+    background-color: #00aeff;
     color:#fff;
     font-size: 68px;
     font-weight: 600;
@@ -192,7 +193,7 @@ html,body{
     height:calc(75% - 20px);
     margin-bottom: 20px;
     /*background-color: rgba(0,24,106,0.3);*/
-    /*border: 1px solid #0089ff;*/
+    /*border: 1px solid #00aeff;*/
     /*border-radius: 4px;*/
     /*box-sizing: border-box;*/
 }
