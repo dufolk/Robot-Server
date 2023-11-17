@@ -12,7 +12,7 @@ socketio = SocketIO()
 # 用于启动服务
 @views_blue.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('test.html')
 
 # @socketio.on('message')
 # def message(msg):
@@ -25,10 +25,23 @@ def index():
 def connect(message):
     print('connect')
     socketio.start_background_task(send_location)
+    socketio.emit('blood', 1)
     
 def send_location():
     while True:
         loc = {k:[v.location[0],v.location[1]] for k,v in GlobalStatus.Clients.items()}
         data = loc
         socketio.emit('message', data)
+        time.sleep(0.1)
+
+@socketio.on('blood_msg')
+def blood(message2):
+    print(message2['data'])
+    # socketio.start_background_task(blood_data)
+    
+def blood_data():
+    while True:
+        data={'robot1':get_blood('robot1'),
+        'robot2':get_blood('robot2')}
+        socketio.emit('blood_message', data)
         time.sleep(0.1)

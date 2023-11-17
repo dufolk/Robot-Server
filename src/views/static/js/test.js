@@ -1,9 +1,13 @@
 
 $(function () {
-    var socketio = io.connect('http://10.7.25.26:8000');
+    var socketio = io.connect('http://127.0.0.1:8000');
     socketio.on('connect', function () {
         console.log('连接成功');
         socketio.emit('message', {data: 'I\'m connected!'});
+    });
+    socketio.on('blood', function () {
+        console.log('连接成功_blood');
+        socketio.emit('blood_msg', {data: 'I\'m connected!'});
     });
     var color_id = {
         0: "RED1",
@@ -11,6 +15,9 @@ $(function () {
         2: "BLUE1",
         3: "BLUE2",
     }
+    var rankPic = {
+        first: '../img/info-img-3.png',
+    };
     echarts_1();
     echarts_2();
     map();
@@ -345,129 +352,119 @@ $(function () {
     function echarts_3() {
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('echarts_3'));
+    
+        var yData = function() {
+            var data = ['红方','蓝方'];
+            return data;
+        }();
+    
+        var data = [100,100];
+    
         option = {
-
-            tooltip : {
-                trigger: 'axis'
-            },
-            legend: {
-                orient: 'vertical',
-                data:['简易程序案件数']
-            },
-            grid: {
-                left: '3%',
-                right: '3%',
-                top:'8%',
-                bottom: '5%',
-                containLabel: true
-            },
-            color:['#a4d8cc','#25f3e6'],
-            toolbox: {
-                show : false,
-                feature : {
-                    mark : {show: true},
-                    dataView : {show: true, readOnly: false},
-                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
-                    restore : {show: true},
-                    saveAsImage : {show: true}
-                }
-            },
-
-            calculable : true,
-            xAxis : [
-                {
-                    type : 'category',
-
-                    axisTick:{show:false},
-
-                    boundaryGap : false,
-                    axisLabel: {
-                        textStyle:{
-                            color: '#ccc',
-                            fontSize:'12'
-                        },
-                        lineStyle:{
-                            color:'#2c3459',
-                        },
-                        interval: {default: 0},
-                        rotate:50,
-                        formatter : function(params){
-                            var newParamsName = "";// 最终拼接成的字符串
-                            var paramsNameNumber = params.length;// 实际标签的个数
-                            var provideNumber = 4;// 每行能显示的字的个数
-                            var rowNumber = Math.ceil(paramsNameNumber / provideNumber);// 换行的话，需要显示几行，向上取整
-                            /**
-                             * 判断标签的个数是否大于规定的个数， 如果大于，则进行换行处理 如果不大于，即等于或小于，就返回原标签
-                             */
-                            // 条件等同于rowNumber>1
-                            if (paramsNameNumber > provideNumber) {
-                                /** 循环每一行,p表示行 */
-                                var tempStr = "";
-                                tempStr=params.substring(0,4);
-                                newParamsName = tempStr+"...";// 最终拼成的字符串
-                            } else {
-                                // 将旧标签的值赋给新标签
-                                newParamsName = params;
-                            }
-                            //将最终的字符串返回
-                            return newParamsName
-                        }
-
-                    },
-                    data: ['0时','1时','2时','3时','4时','5时','6时','7时','8时','9时','10时','11时','12时','13时','14时','15时','16时','17时'
-                        ,'18时','19时','20时','21时','22时','23时']
-                }
-            ],
-            yAxis : {
-
-                type : 'value',
-                axisLabel: {
-                    textStyle: {
-                        color: '#ccc',
-                        fontSize:'12',
+            tooltip: {
+                show: "true",
+                trigger: 'item',
+                backgroundColor: 'rgba(0,0,0,0.4)',
+                padding: [8, 10],
+                formatter: function(params) {
+                    if (params.seriesName != "") {
+                        return params.name + ' :  ' + params.value + ' 血';
                     }
                 },
+            },
+            grid: {
+                borderWidth: 0,
+                top: 20,
+                bottom: 35,
+                left: 55,
+                right: 30,
+                textStyle: {
+                    color: "#fff"
+                }
+            },
+            xAxis: {
+                type: 'value',
+                axisTick: {
+                    show: false
+                },
                 axisLine: {
-                    lineStyle:{
-                        color:'rgba(160,160,160,0.3)',
+                    show: true,
+                    lineStyle: {
+                        color: '#32346c',
                     }
                 },
                 splitLine: {
-                    lineStyle:{
-                        color:'rgba(160,160,160,0.3)',
+                    show: true,
+                    lineStyle: {
+                        color: '#32346c ',
                     }
                 },
-
-            }
-            ,
-            series : [
-                {
-                    // name:'简易程序案件数',
-                    type:'line',
-                    areaStyle: {
-
-                        normal: {type: 'default',
-                            color: new echarts.graphic.LinearGradient(0, 0, 0, 0.8, [{
+                axisLabel: {
+                    textStyle: {
+                        color: '#bac0c0',
+                        fontWeight: 'normal',
+                        fontSize: '12',
+                    },
+                    formatter: '{value}',
+                },
+            },
+            yAxis: {
+                type: 'category',
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#363e83',
+                    }
+                },
+                axisLabel: {
+                    inside: false,
+                    textStyle: {
+                        color: '#bac0c0',
+                        fontWeight: 'normal',
+                        fontSize: '12',
+                    },
+                },
+                data: yData,
+            },
+            series: [{
+                type: 'bar',
+                itemStyle: {
+                    normal: {
+                        show: true,
+                        color: 
+                            new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
                                 offset: 0,
-                                color: '#25f3e6'
+                                color: '#ff7f7f' // 第一个柱子的起始颜色
                             }, {
                                 offset: 1,
-                                color: '#0089ff'
-                            }], false)
-                        }
+                                color: '#ff0000' // 第一个柱子的结束颜色
+                            }]),
+                            // new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                            //     offset: 0,
+                            //     color: '#ff0000' // 第二个柱子的起始颜色
+                            // }, {
+                            //     offset: 1,
+                            //     color: '#ff7f7f' // 第二个柱子的结束颜色
+                            // }])
+                        barBorderRadius: 50,
+                        borderWidth: 0,
                     },
-                    smooth:true,
-                    itemStyle: {
-                        normal: {areaStyle: {type: 'default'}}
-                    },
-                    data:[710, 312, 321,754, 500, 830, 710, 521, 504, 660, 530, 410,710, 312, 321,754, 500, 830, 710, 521, 504, 660, 530, 410]
-                }
-            ]
+                    emphasis: {
+                        shadowBlur: 15,
+                        shadowColor: 'rgba(105,123, 214, 0.7)'
+                    }
+                },
+                zlevel: 2,
+                barWidth: '20%',
+                data: data,
+            }]
         };
-
-        // 使用刚指定的配置项和数据显示图表。
+    
         myChart.setOption(option);
-        window.addEventListener("resize",function(){
+        window.addEventListener("resize", function() {
             myChart.resize();
         });
     }
@@ -525,87 +522,38 @@ $(function () {
         });
     }
     function echarts_5() {
-        // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('echarts_5'));
-
-        var xData = function() {
-            var data = ['NO.1','NO.2','NO.3','NO.4','NO.5'];
-
+    
+        var yData = function() {
+            var data = ['red','blue'];
             return data;
         }();
-
-        var data = [28, 22, 20, 16, 12]
-
+    
+        var data = [100,100];
+    
         option = {
-            // backgroundColor: "#141f56",
-
             tooltip: {
                 show: "true",
                 trigger: 'item',
-                backgroundColor: 'rgba(0,0,0,0.4)', // 背景
-                padding: [8, 10], //内边距
-                // extraCssText: 'box-shadow: 0 0 3px rgba(255, 255, 255, 0.4);', //添加阴影
+                backgroundColor: 'rgba(0,0,0,0.4)',
+                padding: [8, 10],
                 formatter: function(params) {
                     if (params.seriesName != "") {
-                        return params.name + ' ：  ' + params.value + ' 辆';
+                        return params.name + ' :  ' + params.value + ' 血';
                     }
                 },
-
             },
             grid: {
                 borderWidth: 0,
                 top: 20,
                 bottom: 35,
-                left:55,
-                right:30,
+                left: 55,
+                right: 30,
                 textStyle: {
                     color: "#fff"
                 }
             },
-            xAxis: [{
-                type: 'category',
-
-                axisTick: {
-                    show: false
-                },
-                axisLine: {
-                    show: true,
-                    lineStyle: {
-                        color: '#363e83',
-                    }
-                },
-                axisLabel: {
-                    inside: false,
-                    textStyle: {
-                        color: '#bac0c0',
-                        fontWeight: 'normal',
-                        fontSize: '12',
-                    },
-                    // formatter:function(val){
-                    //     return val.split("").join("\n")
-                    // },
-                },
-                data: xData,
-            }, {
-                type: 'category',
-                axisLine: {
-                    show: false
-                },
-                axisTick: {
-                    show: false
-                },
-                axisLabel: {
-                    show: false
-                },
-                splitArea: {
-                    show: false
-                },
-                splitLine: {
-                    show: false
-                },
-                data: xData,
-            }],
-            yAxis: {
+            xAxis: {
                 type: 'value',
                 axisTick: {
                     show: false
@@ -631,19 +579,60 @@ $(function () {
                     formatter: '{value}',
                 },
             },
+            yAxis: {
+                type: 'category',
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#363e83',
+                    }
+                },
+                axisLabel: {
+                    inside: false,
+                    textStyle: {
+                        color: '#bac0c0',
+                        fontWeight: 'normal',
+                        fontSize: '12',},
+                        formatter: function (value) {
+                            return '{'+ value + '| }\n{value|' + value + '}';
+                     },
+                        rich:{
+                            red: {
+                                height: 20,
+                                align: 'center',
+                                backgroundColor: {
+                                    image: rankPic.first
+                                }
+                            },
+                            blue: {
+                                height: 20,
+                                align: 'center',
+                                backgroundColor: {
+                                    image: rankPic.first
+                                }
+                            },
+                        },
+                    
+                   
+                },
+                data: yData,
+            },
             series: [{
-                // name: '生师比(%)',
                 type: 'bar',
                 itemStyle: {
                     normal: {
                         show: true,
-                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
                             offset: 0,
-                            color: '#00c0e9'
+                            color: '#ff7f7f'
                         }, {
                             offset: 1,
-                            color: '#3b73cf'
+                            color: '#ff0000'
                         }]),
+                        // color:['#333','#666'],
                         barBorderRadius: 50,
                         borderWidth: 0,
                     },
@@ -655,36 +644,23 @@ $(function () {
                 zlevel: 2,
                 barWidth: '20%',
                 data: data,
-            },
-                {
-                    name: '',
-                    type: 'bar',
-                    xAxisIndex: 1,
-                    zlevel: 1,
-                    itemStyle: {
-                        normal: {
-                            color: '#121847',
-                            borderWidth: 0,
-                            shadowBlur: {
-                                shadowColor: 'rgba(255,255,255,0.31)',
-                                shadowBlur: 10,
-                                shadowOffsetX: 0,
-                                shadowOffsetY: 2,
-                            },
-                        }
-                    },
-                    barWidth: '20%',
-                    data: [30, 30, 30, 30, 30]
-                }
-            ]
-        }
-
-
-        // 使用刚指定的配置项和数据显示图表。
+            }]
+        };
+    
         myChart.setOption(option);
+        socketio.on('blood_message', function (data) {
+            for (var robotId in data) {
+                var health = data[robotId];
+                var seriesIndex = Math.floor(robotId / 2);
+                var dataIndex = robotId % 2;
+                option.series[seriesIndex].data[dataIndex] = health;
+            }
+            myChart.setOption(option);
+        });
         window.addEventListener("resize",function(){
             myChart.resize();
         });
+
     }
     function echarts_6() {
         // 基于准备好的dom，初始化echarts实例
