@@ -2,10 +2,25 @@ html,body{
     height: 100%;
     width: 100%;
 }
-.data{
+.title{
+    font-size: 22px;
+    color: blue;  
+    font-weight: bold;
+    text-align: center;
+  }
+.view{
+    font-size: 22px;
+    color: rgb(255,255,255);  
+    font-weight: bold;
+    text-align: center;
+    background-color: rgba(162, 224, 240, 0.3); 
+
+}
+.data{  
     width: 100%;
     height: 100%;
-    background: url('../img/map.jpg') center;
+    background: rgba(255, 255, 255, 0.3) url('../img/map1.png') center;
+    background-color: rgba(232, 235, 101, 0.1); 
     min-width: 1366px;
 }
 .data>.data-title{
@@ -20,14 +35,14 @@ html,body{
     box-sizing: border-box;
     border-right: 5px solid #00aeff;
     border-left: 5px solid #00aeff;
-    background: url("../img/title.png") no-repeat;
-    background-color: rgba(0, 0, 0, 0);
+    background: url("../img/title(1).png") no-repeat;
+    /* background-color: rgba(0, 0, 0, 0); */
 }
 .data>.data-title>.title-left,
 .data>.data-title>.title-right{
     width:calc(50% - 220px);
     height: 3px;
-    background: #00aeff;
+    /* background: #00aeff; */
     margin-top: 18px;
 }
 
@@ -40,100 +55,24 @@ html,body{
 .data>.data-content>.con-left{
     width: 23.4375%;
     height: 100%;
+    /* background-color: rgb(90, 187, 87,0.3); */
 }
 .data>.data-content>.con-left>.left-top{
     width: 100%;
-    height:calc(75% - 20px);
+    height:32%;
     margin-bottom: 20px;
-    position: relative;
-}
-
-.data>.data-content>.con-left>.left-top>.info{
-    height:62%;
-    width: 100%;
-    border: 1px solid #20558b;
-    /*border-radius: 4px;*/
-    box-sizing: border-box;
-    position: relative;
-}
-
-.data>.data-content>.con-left>.left-top>.info>.info-title{
-    width: 158px;
-    height: 43px;
-    background: url('../img/info-title.png') no-repeat;
-    position: absolute;
-    top: -22px;
-    left:50%;
-    margin-left: -74px;
-    color:#fff;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 43px;
-    text-align: center;
-}
-.data>.data-content>.con-left>.left-top>.info>.info-main{
-    width: 100%;
-    height: 80% ;
-}
-.data>.data-content>.con-left>.left-top>.info>.info-main>div{
-    width: 275px;
-    height: 25%;
-    background: url('../img/info-text.png') no-repeat;
-    margin: 8px auto;
-}
-.data>.data-content>.con-left>.left-top>.info>.info-main>div.info-1{
-    margin-top: 40px;
-}
-.data>.data-content>.con-left>.left-top>.info>.info-main .info-img{
-    width: 100px;
-    height: 60px;
-    position: relative;
-}
-.data>.data-content>.con-left>.left-top>.info>.info-main .info-img>img{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -24px;
-    margin-top: -24px;
-}
-.data>.data-content>.con-left>.left-top>.info>.info-main .info-text{
-    width: 175px;
-    height: 70px;
-    padding-left: 30px;
-    padding-top: 16px;
-    box-sizing: border-box;
-}
-.data>.data-content>.con-left>.left-top>.info>.info-main .info-text>p:nth-child(1){
-    color:#fff;
-    font-weight: 600;
-    font-size: 14px;
-}
-.data>.data-content>.con-left>.left-top>.info>.info-main>.info-1> .info-text>p:nth-child(2){
-    font-weight: 600;
-    color:#ffff44;
-    font-size: 22px;
-}
-.data>.data-content>.con-left>.left-top>.info>.info-main>.info-2> .info-text>p:nth-child(2){
-    font-weight: 600;
-    color:#25f3e6;
-    font-size: 22px;
-}
-.data>.data-content>.con-left>.left-top>.info>.info-main>.info-3> .info-text>p:nth-child(2){
-    font-weight: 600;
-    color:#f84a4a;
-    font-size: 22px;
-}
-.data>.data-content>.con-left>.left-top>.info>.info-main>.info-4> .info-text>p:nth-child(2){
-    font-weight: 600;
-    color:#f5c847;
-    font-size: 22px;
-}
-
-.data>.data-content>.con-left>.left-top>.top-bottom{
-    height:calc(38% - 20px);
-    width: 100%;
     background-color: rgba(0,24,106,0.5);
-    margin-top: 20px;
+    border: 1px solid #20558b;
+    position: relative;
+}
+
+
+
+.data>.data-content>.con-left>.top-bottom{
+    width: 100%;
+    height:calc(36% - 40px);
+    margin: 20px 0;
+    background-color: rgba(205, 173, 209, 0.3);
     border: 1px solid #20558b;
     box-sizing: border-box;
     position: relative;
@@ -143,18 +82,38 @@ html,body{
 
 .data>.data-content>.con-left>.left-bottom{
     width: 100%;
-    height: 25%;
-    background-color: rgba(0,24,106,0.5);
+    height: 32%;
+    background-color: rgba(205, 173, 209, 0.3);
     border: 1px solid #20558b;
     box-sizing: border-box;
     position: relative;
 }
+/* 11.22 10.07分区插图片 */
+.data>.data-content>.con-left>.left-bottom>.p-left{
+    width: 43%;
+    height: 85%;
+    /* background-color: rgba(106, 0, 74, 0); */
+    /* border: 1px solid #20558b; */
+    box-sizing: border-box;
+    position: relative;
+}
+.data>.data-content>.con-left>.left-bottom>.p-right{
+    width: 57%;
+    height: 85%;
+    /* background-color: rgba(106, 0, 74, 0.25); */
+    /* border: 1px solid #20558b; */
+    box-sizing: border-box;
+    position: relative;
+}
+
+
 .data>.data-content>.con-center{
     width: 53.125%;
     height: 100%;
     padding:0 20px;
     box-sizing: border-box;
     position: relative;
+    /* background-color: rgba(187, 87, 187, 0.3); */
 }
 .data>.data-content>.con-center>.map-num{
     width: 500px;
@@ -190,8 +149,8 @@ html,body{
 
 .data>.data-content>.con-center>.cen-top{
     width: 100%;
-    height:calc(75% - 20px);
-    margin-bottom: 20px;
+    height:calc(75% - 70px);
+    margin-bottom: 12px;
     /*background-color: rgba(0,24,106,0.3);*/
     /*border: 1px solid #00aeff;*/
     /*border-radius: 4px;*/
@@ -201,13 +160,65 @@ html,body{
 
 .data>.data-content>.con-center>.cen-bottom{
     width: 100%;
-    height: 25%;
-    background-color: rgba(0,24,106,0.5);
+    height: 32%;
+    background-color: rgba(0,24,106,0);
+    /* border: 1px solid #20558b; */
+    box-sizing: border-box;
+    position: relative;
+    /* padding:0 20px 20px; */
+}
+/* ryk!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+.data>.data-content>.con-center>.cen-bottom>.cen-bottom-left{
+    width: 48.75%;
+    height: 100%;
+    background-color: rgba(205, 173, 209, 0.3);
     border: 1px solid #20558b;
     box-sizing: border-box;
     position: relative;
 }
+.data>.data-content>.con-center>.cen-bottom>.cen-bottom-left>.p-left{
+    width: 43%;
+    height: 85%;
+    background-color: rgba(106, 0, 74, 0);
+    /* border: 1px solid #20558b; */
+    box-sizing: border-box;
+    position: relative;
+}
+.data>.data-content>.con-center>.cen-bottom>.cen-bottom-left>.p-right{
+    width: 57%;
+    height: 85%;
+    /* background-color: rgba(106, 0, 74, 0.25); */
+    /* border: 1px solid #20558b; */
+    box-sizing: border-box;
+    position: relative;
+}
+/* @@@@@@@@@@@@@@@@@@@
+&&&&&&&&&&&&&&&&& */
+.data>.data-content>.con-center>.cen-bottom>.cen-bottom-right{
+    width: 48.75%;
+    height: 100%;
+    background-color: rgba(205, 173, 209, 0.3);
+    border: 1px solid #20558b;
+    box-sizing: border-box;
+    position: relative;
 
+}
+.data>.data-content>.con-center>.cen-bottom>.cen-bottom-right>.p-left{
+    width: 43%;
+    height: 85%;
+    background-color: rgba(106, 0, 74, 0);
+    /* border: 1px solid #20558b; */
+    box-sizing: border-box;
+    position: relative;
+}
+.data>.data-content>.con-center>.cen-bottom>.cen-bottom-right>.p-right{
+    width: 57%;
+    height: 85%;
+    /* background-color: rgba(106, 0, 74, 0.15); */
+    /* border: 1px solid #20558b; */
+    box-sizing: border-box;
+    position: relative;
+}
 .data>.data-content>.con-right{
     width: 23.4375%;
     height: 100%;
@@ -224,7 +235,7 @@ html,body{
     width: 100%;
     height:calc(36% - 40px);
     margin: 20px 0;
-    background-color: rgba(0,24,106,0.5);
+    background-color: rgba(205, 173, 209, 0.3);
     border: 1px solid #20558b;
     box-sizing: border-box;
     position: relative;
@@ -232,12 +243,27 @@ html,body{
 .data>.data-content>.con-right>.right-bottom{
     width: 100%;
     height:32%;
-    background-color: rgba(0,24,106,0.5);
+    background-color: rgba(205, 173, 209, 0.3);
     border: 1px solid #20558b;
     box-sizing: border-box;
     position: relative;
 }
-
+.data>.data-content>.con-right>.right-bottom>.p-left{
+    width: 43%;
+    height: 85%;
+    background-color: rgba(106, 0, 74, 0);
+    /* border: 1px solid #20558b; */
+    box-sizing: border-box;
+    position: relative;
+}
+.data>.data-content>.con-right>.right-bottom>.p-right{
+    width: 57%;
+    height: 85%;
+    /* background-color: rgba(106, 0, 74, 0.25); */
+    /* border: 1px solid #20558b; */
+    box-sizing: border-box;
+    position: relative;
+}
 .data>.data-content .title{
     height: 35px;
     line-height: 35px;
