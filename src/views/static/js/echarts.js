@@ -22,7 +22,9 @@ $(function () {
     robot_photo_c();
     robot_photo_d();
     //第一视角
-    vision();
+    // vision();
+    //语音标识
+    wave_();
 
     function map() {
         var chartDom = document.getElementById('map');
@@ -820,4 +822,60 @@ $(function () {
     {
 
     }
+    function wave_()
+    {
+        var chartDom = document.getElementById('wave_');
+        var myChart = echarts.init(chartDom);
+        var option;
+        option = {
+            graphic: {
+              elements: [
+                {
+                  type: 'group',
+                  left: 'center',
+                  top: 'center',
+                  children: new Array(7).fill(0).map((val, i) => ({
+                    type: 'rect',
+                    x: i * (200 / 7),
+                  shape: {
+                    x: 0,
+                    y: -20,
+                    width: 200 / 14,
+                    height: 40
+                  },
+                    style: {
+                      fill: '#5470c7'
+                    },
+                    keyframeAnimation: {
+                      duration: 1000,
+                      delay: i * 200,
+                      loop: true,
+                      keyframes: [
+                        {
+                          percent: 0.5,
+                          scaleY: 0.1,
+                          easing: 'cubicIn'
+                        },
+                        {
+                          percent: 1,
+                          scaleY: 1,
+                          easing: 'cubicOut'
+                        }
+                      ]
+                    }
+                  }))
+                }
+              ]
+            }
+          };
+            myChart.setOption(option);
+            myChart.on('click', function (params) {
+                // 此处一般写：click事件触发后的回调，来完成额外的功能
+                console.log(123);
+            });
+    }
 })
+function voice()
+{
+    console.log(123);
+}
