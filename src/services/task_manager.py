@@ -10,8 +10,4 @@ class TaskManager:
         if type == Config.MSG_TYPE['SERVER_COMMAND']:
             client_send_msg(**msg)
         elif type == Config.MSG_TYPE['LOCATION']:
-<<<<<<< HEAD
-            GlobalStatus.Clients[str(msg['id'])].location = msg['location']
-=======
             GlobalStatus.Clients[msg['id']].location = msg['location']
->>>>>>> develop

@@ -10,11 +10,7 @@ from configs import Config
 class ServerService(socketserver.BaseRequestHandler):                              
     def handle(self):
         print('Got connection from', self.client_address)
-<<<<<<< HEAD
-        self.id = self.myrecv()
-=======
         self.id = int(self.myrecv())
->>>>>>> develop
         currclient = ClientEntity(self.id, self.request)
         self.disconnect = False
         GlobalStatus.Clients[self.id] = currclient
@@ -38,12 +34,9 @@ class ServerService(socketserver.BaseRequestHandler):
                 self.disconnect = True
                 return None
             length = int(bufferdata.decode('utf-8'))
-<<<<<<< HEAD
-=======
         except WindowsError:
             self.disconnect = True
             return None
->>>>>>> develop
         except Exception as e:
             print('myrecv error:', e)
             return None
