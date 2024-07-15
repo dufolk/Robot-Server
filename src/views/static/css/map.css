@@ -180,33 +180,21 @@ html,body{
     box-sizing: border-box;
     position: relative;
 }
-.data>.data-content>.con-center>.cen-bottom>.cen-bottom-left>.tl{
+.data>.data-content>.con-center>.cen-bottom>.cen-bottom-left>.title1{
     width: 49%;
     /* height: 15%; */
     height: 35px;
     font-size: 22px;
     color: rgb(255, 255, 255);  
     font-weight: bold;
+    line-height: 35px;
     background-color: rgba(106, 0, 74, 0);
     /* border: 1px solid #20558b; */
     box-sizing: border-box;
     position: relative;
+    text-align: center;
 }
-.data>.data-content>.con-center>.cen-bottom>.cen-bottom-left>.tr{
-    width: 49%;
-    height: 35px;
-    background-color: rgba(106, 0, 74,0);
-    font-size: 22px;
-    color: rgb(255, 255, 255);  
-    font-weight: bold;
-    /* border: 1px solid #20558b; */
-    box-sizing: border-box;
-    position: relative;
-}
-.data>.data-content>.con-center>.cen-bottom>.cen-bottom-left>.tr>.que{
-    height: 90%;
-    width: 90%;
-}
+
 .data>.data-content>.con-center>.cen-bottom>.cen-bottom-left>.p-left{
     width: 43%;
     height: 85%;
