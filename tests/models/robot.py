@@ -10,10 +10,21 @@ from src.models import Location
 from src.utils import *
 
 class RobotEntity(ClientModel, Location):
+<<<<<<< HEAD
     def __init__(self, server_ip, server_port, id:int):
         ClientModel.__init__(self, server_ip, server_port) 
         Location.__init__(self)
         self.id = id
+=======
+    def __init__(self, server_ip, server_port, id:str):
+        ClientModel.__init__(self, server_ip, server_port) 
+        Location.__init__(self)
+        if id in Config.color_id.keys():
+            self.id = Config.color_id[id]
+        else:
+            raise Exception('Invalid client id')
+
+>>>>>>> develop
         self.robot_connect()
         self.global_location = dict()
         self.lock = threading.Lock()
@@ -50,7 +61,11 @@ class RobotEntity(ClientModel, Location):
                     self.sock.send(loc_msg)
                 finally:
                     self.lock.release()
+<<<<<<< HEAD
                 time.sleep(1)
+=======
+                time.sleep(0.1)
+>>>>>>> develop
             except Exception as e:
                 print(e)
                 continue
