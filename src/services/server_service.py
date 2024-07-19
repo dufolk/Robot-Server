@@ -34,7 +34,7 @@ class ServerService(socketserver.BaseRequestHandler):
                 self.disconnect = True
                 return None
             length = int(bufferdata.decode('utf-8'))
-        except WindowsError:
+        except OSError:
             self.disconnect = True
             return None
         except Exception as e:
@@ -43,6 +43,13 @@ class ServerService(socketserver.BaseRequestHandler):
         data = self.request.recv(length)
         data = mydecoder(data)
         return data
+    
+if __name__ == '__main__':
+    host = Config.SERVER_IP
+    port = Config.SERVER_PORT
+    server = socketserver.ThreadingTCPServer((host, port), ServerService)
+    print('server started')
+    server.serve_forever()
 
         
 

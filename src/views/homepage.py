@@ -23,7 +23,7 @@ def index():
 
 @socketio.on('connect')
 def connect(message):
-    print('connect')
+    print('WEB connect')
     socketio.start_background_task(send_location)
     socketio.start_background_task(blood_test)
    
@@ -41,9 +41,6 @@ def blood_test():
     while True:
         a=redblood[i]
         b=blueblood[i]
-        print(a)
-        print(b)
-        i=i+1
         data_test=a
         blue_test=b
         socketio.emit('message_test', data_test)
