@@ -4,7 +4,7 @@ import socketserver
 # 用于发布比赛命令的服务
 
 class CommandPublishService():
-    def publish(command:str):
+    def publish(self, command:str):
         msg = myencoder(command)
         GlobalStatus.SendLock.acquire()
         try:

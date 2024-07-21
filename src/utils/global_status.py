@@ -8,3 +8,5 @@ class GlobalStatus:
 
     # 全局发送数据的线程锁
     SendLock = threading.Lock()
+
+    SpeechFlag = False

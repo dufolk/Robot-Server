@@ -6,14 +6,22 @@ from configs import Config
 
 import socketserver
 from flask import Flask, render_template
+import threading
+
 
 if __name__ == '__main__':
     host = Config.SERVER_IP
     port = Config.SERVER_PORT
     server = socketserver.ThreadingTCPServer((host, port), ServerService)
     app = WebService()
+    
     location_pub = LocationPubService()
     print('server started')
+    
+    t = threading.Thread(target=lambda *_:server.serve_forever)
+    t.setDaemon(True)
+    t.start()
+
     server.serve_forever()
     
 

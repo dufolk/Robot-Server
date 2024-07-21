@@ -870,7 +870,7 @@ $(function () {
             myChart.resize();
         });
         myChart.on('click', function(params) {
-            console.log(123);
+            socketio.emit('b1SS');
           });
 
     }

@@ -11,17 +11,11 @@ class LocationPubService:
         t.start()
 
     def publish(self):
-        # while True:
-        #     from ..views import socketio
-        #     if type(socketio) == None:
-        #         continue
-        #     print("初始化成功")
-        #     sockio = socketio
-        #     break
         while True:
             location_message = format_location()
-            # self.web_view(sockio)
-            if location_message == None:
+            # # self.web_view(sockio)
+            if location_message is None:
+                time.sleep(0.05)
                 continue
             msg = myencoder(location_message)
             GlobalStatus.SendLock.acquire()
