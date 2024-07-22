@@ -17,10 +17,6 @@ if __name__ == '__main__':
     
     location_pub = LocationPubService()
     print('server started')
-    
-    t = threading.Thread(target=lambda *_:server.serve_forever)
-    t.setDaemon(True)
-    t.start()
 
     server.serve_forever()
     

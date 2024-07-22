@@ -1,5 +1,5 @@
 $(function () {
-    var socketio = io.connect('http://127.0.0.1:8000');
+    var socketio = io.connect('http://192.168.1.10:8000');
     socketio.on('connect', function () {
         console.log('连接成功');
         socketio.emit('message', {data: 'I\'m connected!'});
@@ -69,7 +69,10 @@ $(function () {
                 ],
                 color: ['#0000ff']
               }
-            ]
+            ],
+            animationDuration:95,
+            animationDurationUpdate: 80,
+            animationEasingUpdate: 'linear'
           };
         myChart.setOption(option);
         socketio.on('message', function (msg) {
