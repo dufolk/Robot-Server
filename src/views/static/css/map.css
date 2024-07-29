@@ -317,3 +317,11 @@ html,body{
     left:-1px;
     bottom:-1px;
 }
+
+.video-container{
+    position: absolute;
+    left:1px;
+    bottom:1px;
+    height: 90%;
+    width: 100%;
+}

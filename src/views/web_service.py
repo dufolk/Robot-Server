@@ -1,6 +1,7 @@
 import threading
 from flask import Flask, render_template
 from flask_socketio import SocketIO
+from flask_cors import CORS
 from . import views_blue, socketio
 
 # Author : ZP
@@ -13,6 +14,7 @@ class WebService:
 
     def web_service(self):
         app = Flask(__name__)
+        CORS(app)
         app.register_blueprint(views_blue)
         socketio.init_app(app, cors_allowed_origins="*")
         # app.run(host="0.0.0.0", port=8000)

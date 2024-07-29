@@ -1,0 +1,9 @@
+flask
+flask_socketio
+SpeechRecognition
+pyaudio
+zhconv
+whisper
+openai-whisper
+wheel
+soundfile

@@ -37,9 +37,9 @@ def mydecoder(data:bytes):
 def msg_type(msg:dict):
     if "from" in msg and "msg" in msg:
         if "to" in msg:
-            return Config.MSG_TYPE['SERVER_COMMAND']
-        else:
             return Config.MSG_TYPE['MESSAGE']
+        else:
+            return Config.MSG_TYPE['SERVER_COMMAND']
     else:
         return Config.MSG_TYPE['LOCATION']
     
