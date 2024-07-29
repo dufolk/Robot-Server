@@ -1,10 +1,12 @@
 from flask import render_template
-from flask import Blueprint
+from flask import Blueprint, Response, stream_with_context
+import subprocess
 from flask_socketio import SocketIO
 from ..services import SpeechService, CommandPublishService
 import random
 from ..utils import *
 import time
+import subprocess
 
 import threading
 
@@ -22,14 +24,55 @@ b=[0,0,2000]
 # 用于启动服务
 @views_blue.route('/')
 def index():
+    print("Rendering index.html")
     return render_template('index.html')
+
+def generate():
+    command = [
+        'ffmpeg',
+        '-i', '/dev/video0',  # 输入视频文件或者设备
+        '-f', 'webm',  # 选择输出格式为 WebM
+        '-codec:v', 'libvpx',  # 使用 VP8 视频编解码器
+        '-b:v', '800k',  # 输出视频比特率
+        '-r', '30',  # 输出视频帧率
+        '-'
+    ]
+    print("Starting ffmpeg process...")
+    process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=10**8)
+    
+    def generate_video_stream():
+        try:
+            while True:
+                data = process.stdout.read(1024)
+                if not data:
+                    print("No more data from ffmpeg.")
+                    time.sleep(1)
+                    break
+                yield data
+        except GeneratorExit:
+            print("GeneratorExit: Killing ffmpeg process.")
+            process.kill()
+            raise
+        except Exception as e:
+            print(f"Exception: {e}")
+            process.kill()
+            raise
+        finally:
+            process.kill()
+            print("Killing ffmpeg process.")
+
+    return Response(stream_with_context(generate_video_stream()), content_type='video/webm')
+
+@views_blue.route('/stream')
+def stream():
+    return generate()
 
 @socketio.on('connect')
 def connect(message):
     print('WEB connect')
     socketio.start_background_task(send_location)
     socketio.start_background_task(blood_test)
-   
+
     
 def send_location():
     while True:

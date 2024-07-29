@@ -24,13 +24,15 @@
                 <img src="static/img/bj-3.png" alt="" class="bj-3">
                 <img src="static/img/bj-4.png" alt="" class="bj-4">
             </div>
-            <div class="top-bottom" id="fangzhen1" style="background: url(static/img/fang1.png) no-repeat center center; background-size: 100% 100%;">
+            <div class="top-bottom" id="fangzhen1">
+                <video id="video" controls autoplay="true" class="video-container">
+                    <source src="http://192.168.1.10:8000/stream" type="video/webm">
+                </video>
                 <div class="title">Blue仿真</div>
                 <img src="static/img/bj-1.png" alt="" class="bj-1">
                 <img src="static/img/bj-2.png" alt="" class="bj-2">
                 <img src="static/img/bj-3.png" alt="" class="bj-3">
                 <img src="static/img/bj-4.png" alt="" class="bj-4">
-                <div id="echarts_2" class="charts"></div>
             </div>
             <div class="left-bottom">
                 <div class="title" >
@@ -116,4 +118,5 @@
 <script src="static/js/echarts.min.js"></script>
 <script src="static/js/china.js"></script>
 <script src="static/js/echarts.js"></script>
+<!-- <script src="static/js/video_stream.js"></script> -->
 </html>

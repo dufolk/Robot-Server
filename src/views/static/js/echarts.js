@@ -1,5 +1,5 @@
 $(function () {
-    var socketio = io.connect('http://192.168.1.10:8000');
+    var socketio = io.connect('http://' + document.domain + ':' + location.port);
     socketio.on('connect', function () {
         console.log('连接成功');
         socketio.emit('message', {data: 'I\'m connected!'});
